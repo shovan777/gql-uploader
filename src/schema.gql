@@ -19,6 +19,9 @@ type ProfileImage {
   profile: Profile!
 }
 
+"""Upload files"""
+scalar Upload
+
 type Query {
   profiles: [Profile!]!
   profile(id: Int!): Profile!
@@ -26,17 +29,16 @@ type Query {
 
 type Mutation {
   createProfile(createProfileInput: CreateProfileInput!): Profile!
-  updateProfile(updateProfileInput: UpdateProfileInput!): Profile!
+  updateProfile(id: Int!, updateProfileInput: UpdateProfileInput!): Profile!
   removeProfile(id: Int!): Profile!
 }
 
 input CreateProfileInput {
   """Example field (placeholder)"""
-  exampleField: Int!
+  images: [Upload!]!
 }
 
 input UpdateProfileInput {
   """Example field (placeholder)"""
-  exampleField: Int
-  id: Int!
+  images: [Upload!]
 }

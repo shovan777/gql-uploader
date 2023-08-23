@@ -9,7 +9,9 @@ export class ProfilesResolver {
   constructor(private readonly profilesService: ProfilesService) {}
 
   @Mutation(() => Profile)
-  createProfile(@Args('createProfileInput') createProfileInput: CreateProfileInput) {
+  createProfile(
+    @Args('createProfileInput') createProfileInput: CreateProfileInput,
+  ) {
     return this.profilesService.create(createProfileInput);
   }
 
@@ -24,8 +26,11 @@ export class ProfilesResolver {
   }
 
   @Mutation(() => Profile)
-  updateProfile(@Args('updateProfileInput') updateProfileInput: UpdateProfileInput) {
-    return this.profilesService.update(updateProfileInput.id, updateProfileInput);
+  updateProfile(
+    @Args({ name: 'id', type: () => Int }) id: number,
+    @Args('updateProfileInput') updateProfileInput: UpdateProfileInput,
+  ) {
+    return this.profilesService.update(id, updateProfileInput);
   }
 
   @Mutation(() => Profile)

@@ -6,9 +6,11 @@ import { TypeOrmModule } from '@nestjs/typeorm';
 import { GraphQLModule } from '@nestjs/graphql';
 import { ApolloDriver, ApolloDriverConfig } from '@nestjs/apollo';
 import { join } from 'path';
+import { Upload } from './scalars/upload.scalar';
 
 @Module({
   imports: [
+    Upload,
     ProfilesModule,
     TypeOrmModule.forRoot({
       type: 'sqlite',
