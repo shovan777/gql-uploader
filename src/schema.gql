@@ -1,0 +1,42 @@
+# ------------------------------------------------------
+# THIS FILE WAS AUTOMATICALLY GENERATED (DO NOT MODIFY)
+# ------------------------------------------------------
+
+type Profile {
+  """Unique id of the profile"""
+  id: Int!
+
+  """Profile Image"""
+  images: [ProfileImage!]!
+}
+
+type ProfileImage {
+  """Unique id of profile image"""
+  id: Int!
+
+  """Profile Image"""
+  imageURL: String!
+  profile: Profile!
+}
+
+type Query {
+  profiles: [Profile!]!
+  profile(id: Int!): Profile!
+}
+
+type Mutation {
+  createProfile(createProfileInput: CreateProfileInput!): Profile!
+  updateProfile(updateProfileInput: UpdateProfileInput!): Profile!
+  removeProfile(id: Int!): Profile!
+}
+
+input CreateProfileInput {
+  """Example field (placeholder)"""
+  exampleField: Int!
+}
+
+input UpdateProfileInput {
+  """Example field (placeholder)"""
+  exampleField: Int
+  id: Int!
+}

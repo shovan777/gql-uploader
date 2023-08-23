@@ -3,14 +3,25 @@ import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { ProfilesModule } from './profiles/profiles.module';
 import { TypeOrmModule } from '@nestjs/typeorm';
+import { GraphQLModule } from '@nestjs/graphql';
+import { ApolloDriver, ApolloDriverConfig } from '@nestjs/apollo';
+import { join } from 'path';
 
 @Module({
-  imports: [ProfilesModule, TypeOrmModule.forRoot({
-    type: 'sqlite',
-    database: 'profileDB',
-    entities: [__dirname + "/**/*.entity{.ts,.js}"],
-    synchronize: true
-  })],
+  imports: [
+    ProfilesModule,
+    TypeOrmModule.forRoot({
+      type: 'sqlite',
+      database: 'profileDB',
+      entities: [__dirname + "/**/*.entity{.ts,.js}"],
+      synchronize: true
+    }),
+    GraphQLModule.forRoot<ApolloDriverConfig>({
+      driver: ApolloDriver,
+      path: '/graphql',
+      autoSchemaFile: join(process.cwd(), 'src/schema.gql'),
+    })
+  ],
   controllers: [AppController],
   providers: [AppService],
 })
