@@ -34,11 +34,11 @@ type Mutation {
 }
 
 input CreateProfileInput {
-  """Example field (placeholder)"""
+  """Input for the profile image files."""
   images: [Upload!]!
 }
 
 input UpdateProfileInput {
-  """Example field (placeholder)"""
+  """Input for the profile image files."""
   images: [Upload!]
 }

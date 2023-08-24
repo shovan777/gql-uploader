@@ -16,7 +16,7 @@ export class ProfilesResolver {
   }
 
   @Query(() => [Profile], { name: 'profiles' })
-  findAll() {
+  findAll(): Promise<Profile[]> {
     return this.profilesService.findAll();
   }
 
