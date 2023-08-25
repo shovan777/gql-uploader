@@ -1,4 +1,5 @@
 import { ObjectType, Field, Int } from '@nestjs/graphql';
+import { pathFinderMiddleware } from 'src/middlewares/pathfinder.middleware';
 import { Column, Entity, ManyToOne, OneToMany, PrimaryGeneratedColumn } from 'typeorm';
 
 @ObjectType()
@@ -20,7 +21,7 @@ export class ProfileImage {
   @PrimaryGeneratedColumn()
   id: number;
 
-  @Field({description: 'Profile Image'})
+  @Field({description: 'Profile Image', middleware: [pathFinderMiddleware]})
   @Column()
   imageURL: string;
 
